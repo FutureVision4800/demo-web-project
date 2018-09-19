@@ -48,12 +48,27 @@ public class WebController {
 	 * in your web browser, type the link:
 	 * 	http://localhost:8080/cs480/ping
 	 */
-	@RequestMapping(value = "/cs580/ping", method = RequestMethod.GET)
+	@RequestMapping(value = "/cs480/ping", method = RequestMethod.GET)
 	String healthCheck() {
 		// You can replace this with other string,
 		// and run the application locally to check your changes
 		// with the URL: http://localhost:8080/
 		return "OK-CS480-Demo";
+	}
+	
+	/**
+	 * This is the HTTP API created by Bryan Ayala 
+	 * from team Future Vision. It returns the string
+	 * "My name is Brian with a Y!!!" in the HTTP response.
+	 * To try it, run the App.java file as a Java Application 
+	 * locally. Check the URL: http://localhost:8080/cs480/bryanayala
+	 * @return "My name is Brian with a Y"
+	 */
+	@RequestMapping(value = "/cs480/bryanayala", method = RequestMethod.GET)
+	String bryanAyala() {
+		//I created a HTTP API that returns my name. Check
+		// with the URL: http://localhost:8080/bryanayala
+		return "My name is Brian with a Y!!!";
 	}
 
 	/**
