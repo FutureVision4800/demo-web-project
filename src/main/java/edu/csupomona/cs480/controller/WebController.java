@@ -70,6 +70,14 @@ public class WebController {
 		// with the URL: http://localhost:8080/bryanayala
 		return "My name is Brian with a Y!!!";
 	}
+	
+    /**
+	 * This API returns a String "Hello" in the HTTP response.
+	 */
+	@RequestMapping(value = "/cs480/hello", method = RequestMethod.GET)
+	String hello() {
+		return "Hello";
+	}
 
 	/**
 	 * This is a simple example of how to use a data manager
