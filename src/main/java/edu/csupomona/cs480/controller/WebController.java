@@ -1,6 +1,7 @@
 package edu.csupomona.cs480.controller;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -95,9 +96,17 @@ public class WebController {
 	/**
 	 * This API returns a String "Hello" in the HTTP response.
 	 */
-	@RequestMapping(value = "/cs480/hello", method = RequestMethod.GET)
+	@RequestMapping(value = "/cs480/World", method = RequestMethod.GET)
 	String hello() {
 		return "Hello";
+	}
+	
+	/**
+	 * This API returns a String "Hello World" in the HTTP response.
+	 */
+	@RequestMapping(value = "/cs480/hWorld", method = RequestMethod.GET)
+	String helloWorld() {
+		return "Hello World";
 	}
 
 	/**
