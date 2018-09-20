@@ -71,7 +71,7 @@ public class WebController {
 		return "My name is Brian with a Y!!!";
 	}
 	
-    /**
+	/**
 	 * This API returns a String "Hello" in the HTTP response.
 	 */
 	@RequestMapping(value = "/cs480/hello", method = RequestMethod.GET)
