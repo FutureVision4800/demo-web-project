@@ -55,12 +55,12 @@ public class WebController {
 		// with the URL: http://localhost:8080/
 		return "OK-CS480-Demo";
 	}
-	
+
 	/**
-	 * This is the HTTP API created by Bryan Ayala 
+	 * This is the HTTP API created by Bryan Ayala
 	 * from team Future Vision. It returns the string
 	 * "My name is Brian with a Y!!!" in the HTTP response.
-	 * To try it, run the App.java file as a Java Application 
+	 * To try it, run the App.java file as a Java Application
 	 * locally. Check the URL: http://localhost:8080/cs480/bryanayala
 	 * @return "My name is Brian with a Y"
 	 */
@@ -70,7 +70,28 @@ public class WebController {
 		// with the URL: http://localhost:8080/bryanayala
 		return "My name is Brian with a Y!!!";
 	}
-	
+
+	/*********** Assignment 3: My HTTP API **********/
+	/**
+	 * This method simple returns boolean depending on the random number
+	 * is even (true) or odd (false). Created by Nathaniel Dao. It returns boolean
+	 * true if the random generated number is even and false otherwise.
+	 * @return boolean
+	 */
+	@RequestMapping(value = "/cs480/ndao", method = RequestMethod.GET)
+	boolean returnTrueOrFalse() {
+		Random rand = new Random();
+
+		int  n = rand.nextInt(50) + 1;
+		// You can replace this with other string,
+		// and run the application locally to check your changes
+		// with the URL: http://localhost:8080/
+		if (n % 2 == 0)
+			return true;
+		else
+			return false;
+	}
+
 	/**
 	 * This API returns a String "Hello" in the HTTP response.
 	 */
@@ -146,7 +167,7 @@ public class WebController {
 	List<User> listAllUsers() {
 		return userManager.listAllUsers();
 	}
-	
+
 	@RequestMapping(value = "/cs480/gps/list", method = RequestMethod.GET)
 	List<GpsProduct> listGpsProducts() {
 		return gpsProductManager.listAllGpsProducts();
