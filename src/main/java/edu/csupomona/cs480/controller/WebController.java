@@ -96,7 +96,7 @@ public class WebController {
 	/**
 	 * This API returns a String "Hello" in the HTTP response.
 	 */
-	@RequestMapping(value = "/cs480/World", method = RequestMethod.GET)
+	@RequestMapping(value = "/cs480/hello", method = RequestMethod.GET)
 	String hello() {
 		return "Hello";
 	}
