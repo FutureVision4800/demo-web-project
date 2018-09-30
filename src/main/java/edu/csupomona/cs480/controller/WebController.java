@@ -2,6 +2,7 @@ package edu.csupomona.cs480.controller;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,10 @@ import edu.csupomona.cs480.data.GpsProduct;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.GpsProductManager;
 import edu.csupomona.cs480.data.provider.UserManager;
+
+import com.google.common.base.Predicates;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 
 
 /**
@@ -192,6 +197,25 @@ public class WebController {
 		ModelAndView modelAndView = new ModelAndView("home");
 		modelAndView.addObject("users", listAllUsers());
 		return modelAndView;
+	}
+	
+	/**
+	 * This method creates a list of items and filters the list by a
+	 * specific pattern.
+	 * 
+	 * @return str
+	 */
+	@RequestMapping(value = "/cs480/guava", method = RequestMethod.GET)
+	String filter() {
+		List<String> items = Lists.newArrayList("avocado", "banana",
+				"coconut", "durian", "eggplant");
+		Collection<String> result = Collections2.filter(items,
+				Predicates.containsPattern("a"));
+		String str = "";
+		for (String item: result) {
+			str += (item + "<br>");
+		}
+		return str;
 	}
 
 }
