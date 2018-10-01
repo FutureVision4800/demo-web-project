@@ -22,6 +22,9 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 
 /**
  * This is the controller used by Spring framework.
@@ -74,7 +77,17 @@ public class WebController {
 	String bryanAyala() {
 		//I created a HTTP API that returns my name. Check
 		// with the URL: http://localhost:8080/bryanayala
-		return "My name is Brian with a Y!!!";
+		
+		//Asignment 4. I used Jsoup, and external library, to parse HTML into JAVA and display it with my HTTP response
+		String htmlString = "<html><head><title>My name is Brian with a Y.</title></head>"  + "<body>I used Jsoup to parse HTML into JAVA</body></html>";
+               
+		Document doc = Jsoup.parse(htmlString);
+		String title = doc.title();
+		String body = doc.body().text();
+		
+		String parsedString = "" + title + "\n" + body;
+		
+		return parsedString;
 	}
 
 	/*********** Assignment 3: My HTTP API **********/
