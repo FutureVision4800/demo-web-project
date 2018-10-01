@@ -2,7 +2,11 @@ package edu.csupomona.cs480.controller;
 
 import java.util.List;
 import java.util.Random;
+import javax.validation.constraints.NotNull;
+
 import java.util.Collection;
+import java.util.Iterator;
+import java.io.File;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +26,10 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 
+import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+
 
 
 /**
@@ -230,5 +236,20 @@ public class WebController {
 		}
 		return str;
 	}
-
+	
+	/**
+	 * This method is a text stamp remover for PDF files
+	 */
+	@RequestMapping(value = "/cs480/commonsIO", method = RequestMethod.GET)
+	
+	public static Iterator<File> getFiles(
+	        @NotNull String idn,
+	        @NotNull boolean recursive) {
+	    File dirI = new File(idn);
+	    if (dirI.exists() && dirI.isDirectory()) {
+	        return FileUtils.iterateFiles(dirI, new String[]{"pdf"}, recursive);
+	    } else
+	        return null;
+	}
+	 
 }
