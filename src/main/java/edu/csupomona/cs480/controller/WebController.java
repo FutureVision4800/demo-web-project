@@ -83,16 +83,16 @@ public class WebController {
 	String bryanAyala() {
 		//I created a HTTP API that returns my name. Check
 		// with the URL: http://localhost:8080/bryanayala
-		
+
 		//Asignment 4. I used Jsoup, and external library, to parse HTML into JAVA and display it with my HTTP response
 		String htmlString = "<html><head><title>My name is Brian with a Y.</title></head>"  + "<body>I used Jsoup to parse HTML into JAVA</body></html>";
-               
+
 		Document doc = Jsoup.parse(htmlString);
 		String title = doc.title();
 		String body = doc.body().text();
-		
+
 		String parsedString = "" + title + "\n" + body;
-		
+
 		return parsedString;
 	}
 
@@ -124,7 +124,7 @@ public class WebController {
 	String hello() {
 		return "Hello";
 	}
-	
+
 	/**
 	 * This API returns a String "Hello World" in the HTTP response.
 	 */
@@ -217,11 +217,29 @@ public class WebController {
 		modelAndView.addObject("users", listAllUsers());
 		return modelAndView;
 	}
-	
+
+	/*********** Assignment 4: Add a 3rd party Java library and function to use that library  **********/
+	/**
+	 * This method simple returns boolean depending on the random number is even (true) or odd (false)
+	 * @return
+	 */
+	@RequestMapping(value = "/cs480/gson", method = RequestMethod.GET)
+	public String activate(){
+		Myself me = new Myself();
+		me.name = "Nathaniel Dao";
+		me.hobbies = "Playing Game, Reading Manga, Coding Game";
+		me.major = "Computer Science";
+		me.unitTaken = 20;
+		me.zodiacSign = "Leo";
+		GsonBuilder builder = new GsonBuilder();
+    Gson gson = builder.create();
+    return gson.toJson(me);
+	}
+
 	/**
 	 * This method creates a list of items and filters the list by a
 	 * specific pattern.
-	 * 
+	 *
 	 * @return str
 	 */
 	@RequestMapping(value = "/cs480/guava", method = RequestMethod.GET)
@@ -236,12 +254,12 @@ public class WebController {
 		}
 		return str;
 	}
-	
+
 	/**
 	 * This method is a text stamp remover for PDF files
 	 */
 	@RequestMapping(value = "/cs480/commonsIO", method = RequestMethod.GET)
-	
+
 	public static Iterator<File> getFiles(
 	        @NotNull String idn,
 	        @NotNull boolean recursive) {
@@ -251,5 +269,5 @@ public class WebController {
 	    } else
 	        return null;
 	}
-	 
+
 }
