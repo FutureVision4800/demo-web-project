@@ -8,6 +8,15 @@ import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Iterator;
 import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+ 
+import org.apache.commons.io.IOUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +37,7 @@ import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -270,5 +280,15 @@ public class WebController {
 	    } else
 	        return null;
 	}
+	@RequestMapping(value = "/cs480/commonIO", method = RequestMethod.GET)
+	@SuppressWarnings("deprecation")
+	public static void readURL() throws MalformedURLException, IOException {
+	       InputStream in = new URL("http://commons.apache.org").openStream();
+	       try {
+	           System.out.println(IOUtils.toString(in));
+	       } finally {
+	           IOUtils.closeQuietly(in);
+	       }
+	   }
 
 }
